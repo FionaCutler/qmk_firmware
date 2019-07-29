@@ -12,7 +12,9 @@
         "*.c": "c",
         "*.cpp": "cpp",
         "*.hpp": "cpp",
-        "xstddef": "c"
+        "xstddef": "c",
+        "cstdlib": "c",
+        "xlocale": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
