@@ -5,10 +5,10 @@
 // (note the lack of semicolon after the macro!)
 RGB_MATRIX_EFFECT(my_cool_effect)
 RGB_MATRIX_EFFECT(my_cool_effect2)
-RGB_MATRIX_EFFECT(custom_effect)
 RGB_MATRIX_EFFECT(custom_effect2)
-RGB_MATRIX_EFFECT(custom_effect3)
 RGB_MATRIX_EFFECT(custom_seesaw)
+RGB_MATRIX_EFFECT(custom_seesaw_vertical)
+
 
 // Step 2.
 // Define effects inside the `RGB_MATRIX_CUSTOM_EFFECT_IMPLS` ifdef block
@@ -115,42 +115,35 @@ static bool my_cool_effect2(effect_params_t* params) {
 }
 
 
-static void custom_effect_math(HSV* hsv, int16_t dx, int16_t dy, uint8_t time) {
-    int16_t coord = ((8-dx)/2);
-    hsv->h = (coord*(127-cos8(time))/127) + 200;
-}
-
-bool custom_effect(effect_params_t* params) {
-    return effect_runner_dx_dy(params, &custom_effect_math);
-}
-
-
-static void custom_effect2_math(HSV* hsv, int16_t dx, int16_t dy, uint8_t time) {
-    hsv->h = 5-(4*dy/3);
+static HSV custom_effect2_math(HSV hsv, int16_t dx, int16_t dy, uint8_t time) {
+    hsv.h = 5-(4*dy/3);
+    return hsv;
 }
 
 bool custom_effect2(effect_params_t* params) {
     return effect_runner_dx_dy(params, &custom_effect2_math);
 }
 
-
-
-static void custom_effect_math3(HSV* hsv, int16_t dx, int16_t dy, uint8_t time) {
-    int16_t coord = ((8-dx)/2);
-    hsv->h = (coord*(127-cos8(time))/127)-10;
-}
-
-bool custom_effect3(effect_params_t* params) {
-    return effect_runner_dx_dy(params, &custom_effect_math3);
-}
-
-
-static void custom_seesaw_math(HSV* hsv, int16_t dx, int16_t dy, uint8_t time) {
-    int16_t coord = ((8-dx)/2);
-    hsv->h = (coord*(127-cos8(time))/127)+ rgb_matrix_config.hue;
+static HSV custom_seesaw_math(HSV hsv, int16_t dx, int16_t dy, uint8_t time) {
+    uint16_t middle = (MATRIX_ROWS/2);
+    int16_t coord = ((dx-middle)/2);
+    hsv.h = (coord*(127-cos8(time))/127)+ rgb_matrix_config.hsv.h;
+    return hsv;
 }
 
 bool custom_seesaw(effect_params_t* params) {
     return effect_runner_dx_dy(params, &custom_seesaw_math);
+}
+
+
+static HSV custom_seesaw_vertical_math(HSV hsv, int16_t dx, int16_t dy, uint8_t time) {
+    uint16_t middle = (MATRIX_COLS/2);
+    int16_t coord = ((dy-middle)/2);
+    hsv.h = (coord*(127-cos8(time))/127)+ rgb_matrix_config.hsv.h;
+    return hsv;
+}
+
+bool custom_seesaw_vertical(effect_params_t* params) {
+    return effect_runner_dx_dy(params, &custom_seesaw_vertical_math);
 }
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

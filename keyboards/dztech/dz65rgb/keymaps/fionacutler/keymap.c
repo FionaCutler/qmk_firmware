@@ -1,13 +1,14 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include <stdlib.h>
+
+
 #define _LAYER0 0
 #define _LAYER1 1
 #define _GAMING 2
 enum custom_keycodes {
     LARROW = SAFE_RANGE,
-    RARROW,
-    RANDOM,
+    RARROW
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -22,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		    KC_CAPSLOCK,   RGB_TOG,  KC_UP, RGB_HUI,RGB_HUD, RGB_TOG, RGB_SAD, RGB_VAI, RGB_VAD, KC_TRNS, KC_PSCR, KC_SLCK,  KC_PAUS, RESET,       KC_DEL,\
 			KC_TRNS,       KC_LEFT,  KC_DOWN, KC_RIGHT,KC_TRNS, KC_TRNS, RGB_SAI, RGB_MOD, RGB_HUI, RGB_HUD, KC_TRNS,  KC_TRNS,          EEP_RST,  KC_PGUP,\
 		    KC_LSFT,       KC_TRNS,  LARROW, RARROW,KC_TRNS, KC_TRNS, RGB_SPI, RGB_SPD, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_VOLU,   KC_PGDN,\
-		    KC_LCTRL,       KC_TRNS,  KC_TRNS,                  RANDOM,                   KC_TRNS, KC_TRNS, KC_TRNS,  KC_MPRV,          KC_VOLD,   KC_MNXT),
+		    KC_LCTRL,       KC_TRNS,  KC_TRNS,                  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS,  KC_MPRV,          KC_VOLD,   KC_MNXT),
 };
 
 void rgb_matrix_indicators_user(void)
@@ -32,7 +33,6 @@ void rgb_matrix_indicators_user(void)
 void matrix_init_user(void)
 {
   //user initialization
-  srand(13213);
 }
 
 void matrix_scan_user(void)
@@ -55,16 +55,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 SEND_STRING("=>");
             } else {
                 //Released
-            }
-            break;
-        case RANDOM:
-            if (record->event.pressed) {
-                int random_value = (rand() % 6) + 1;
-                char snum[1];
-                itoa(random_value, snum, 10);
-                SEND_STRING(snum);
-            } else {
-
             }
             break;
     }
