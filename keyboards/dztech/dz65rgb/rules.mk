@@ -10,5 +10,4 @@ COMMAND_ENABLE = no                # Commands for debug and configuration
 NKRO_ENABLE = yes                 # USB Nkey Rollover
 AUDIO_ENABLE = no
 RGB_MATRIX_ENABLE = yes     # Use RGB matrix
-
 LAYOUTS = 65_ansi
