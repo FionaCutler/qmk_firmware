@@ -16,5 +16,20 @@
         "cstdlib": "c",
         "xlocale": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#4b4b4b",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#081808",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#323232",
+        "titleBar.inactiveBackground": "#32323299",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#323232",
+        "statusBarItem.hoverBackground": "#4b4b4b",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#323232"
 }
