@@ -18,7 +18,7 @@ RGB_MATRIX_EFFECT(custom_seesaw_vertical)
 static bool my_cool_effect(effect_params_t* params) {
   RGB_MATRIX_USE_LIMITS(led_min, led_max)
 
-    rgb_matrix_set_color(23, 0xff, 0xff, 0xff);
+    //rgb_matrix_set_color(23, 0xff, 0xff, 0xff);
 
 
 /*

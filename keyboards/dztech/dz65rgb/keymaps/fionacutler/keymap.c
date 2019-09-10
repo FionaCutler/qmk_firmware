@@ -8,7 +8,8 @@
 #define _GAMING 2
 enum custom_keycodes {
     LARROW = SAFE_RANGE,
-    RARROW
+    RARROW,
+    KC_SPAM
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -35,10 +36,10 @@ void matrix_init_user(void)
   //user initialization
 }
 
-void matrix_scan_user(void)
-{
-  //user matrix
-}
+
+bool spam_space;
+uint16_t spam_timer = false;
+uint16_t spam_interval = 1000; // (1000ms == 1s)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
@@ -57,6 +58,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 //Released
             }
             break;
+        case KC_SPAM:
+            if (record->event.pressed) {
+                spam_space ^= 1;
+                spam_timer = timer_read();
+            }
+            return false;
     }
-	  return true;
+	return true;
 }
+
+void matrix_scan_user(void) {
+  if (spam_space && timer_elapsed(spam_timer) >= spam_interval) {
+     spam_timer = timer_read();
+     SEND_STRING(SS_TAP(X_SPACE));
+  }
+}
+
+/*
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case KC_SPAM:
+    if (record->event.pressed) {
+      spam_space ^= 1;
+      spam_timer = timer_read();
+    }
+    return false;
+  }
+  return true;
+}
+
+void matrix_scan_user(void) {
+  if (spam_space && timer_elapsed(spam_timer) >= spam_interval) {
+     spam_timer = timer_read();
+     SEND_STRING(SS_TAP(X_SPACE));
+  }
+}*/
