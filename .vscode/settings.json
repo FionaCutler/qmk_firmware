@@ -8,6 +8,7 @@
         "**/*.hex": true
     },
     "files.associations": {
+<<<<<<< HEAD
         "*.h": "c",
         "*.c": "c",
         "*.cpp": "cpp",
@@ -32,4 +33,14 @@
         "statusBar.foreground": "#e7e7e7"
     },
     "peacock.color": "#323232"
+=======
+      "*.h": "c",
+      "*.c": "c",
+      "*.cpp": "cpp",
+      "*.hpp": "cpp",
+      "xstddef": "c",
+      "type_traits": "c",
+      "utility": "c"
+    }
+>>>>>>> upstream/master
 }
