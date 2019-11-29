@@ -8,7 +8,7 @@ RGB_MATRIX_EFFECT(my_cool_effect2)
 RGB_MATRIX_EFFECT(custom_effect2)
 RGB_MATRIX_EFFECT(custom_seesaw)
 RGB_MATRIX_EFFECT(custom_seesaw_vertical)
-
+RGB_MATRIX_EFFECT(heartbeat)
 
 // Step 2.
 // Define effects inside the `RGB_MATRIX_CUSTOM_EFFECT_IMPLS` ifdef block
@@ -146,4 +146,15 @@ static HSV custom_seesaw_vertical_math(HSV hsv, int16_t dx, int16_t dy, uint8_t 
 bool custom_seesaw_vertical(effect_params_t* params) {
     return effect_runner_dx_dy(params, &custom_seesaw_vertical_math);
 }
+
+static HSV heartbeat_math(HSV hsv, uint8_t i, uint8_t time){
+    uint8_t heartbeat[256] ={ 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39, 39, 39, 40, 40, 41, 42, 43, 44, 45, 46, 48, 49, 50, 52, 53, 55, 56, 57, 57, 58, 58, 58, 57, 57, 56, 55, 53, 52, 50, 49, 48, 46, 45, 44, 43, 42, 41, 40, 39, 39, 38, 37, 37, 36, 35, 34, 33, 31, 30, 28, 26, 23, 21, 18, 16, 13, 11, 10, 9, 9, 10, 13, 18, 24, 33, 44, 57, 73, 90, 110, 130, 152, 175, 197, 218, 238, 216, 193, 169, 145, 122, 100, 79, 61, 45, 32, 21, 13, 6, 3, 0, 0, 1, 3, 5, 8, 11, 15, 18, 21, 24, 26, 28, 30, 32, 33, 34, 35, 36, 36, 37, 37, 37, 37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39, 39, 39, 40, 41, 42, 43, 44, 46, 48, 50, 53, 56, 59, 62, 66, 69, 73, 76, 80, 82, 85, 86, 87, 88, 87, 86, 85, 82, 80, 76, 73, 69, 66, 62, 59, 56, 53, 50, 48, 46, 44, 43, 42, 41, 40, 39, 39, 39, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38};
+    hsv.v = heartbeat[time];
+    return hsv;
+}
+bool heartbeat(effect_params_t* params){
+    return effect_runner_i(params, &heartbeat_math);
+
+}
+
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS
