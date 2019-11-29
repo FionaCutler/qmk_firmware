@@ -16,15 +16,6 @@
 #pragma once
 
 #include "kyria.h"
-#include "quantum.h"
-
-#ifdef USE_I2C
-#include <stddef.h>
-#ifdef __AVR__
-    #include <avr/io.h>
-    #include <avr/interrupt.h>
-#endif
-#endif
 
 /* This a shortcut to help you visually see your layout.
  *
