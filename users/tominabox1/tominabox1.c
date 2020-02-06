@@ -141,7 +141,8 @@ uint32_t layer_state_set_user(uint32_t state) {
     return state;
 }
 
-#ifdef KEYBOARD_crkbd_rev1
+#ifdef
+_rev1
 
 __attribute__((weak))
 void matrix_scan_keymap(void) {}
