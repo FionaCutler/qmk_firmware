@@ -18,6 +18,11 @@
 
 #ifdef OLED_DRIVER_ENABLE
   #define OLED_DISPLAY_128X64
+  //OLED images
+  #define KYRIA 1
+  #define SLY 2
+  #define LICH 3
+  #define OLED_IMAGE KYRIA
 #endif
 
 #ifdef RGBLIGHT_ENABLE
@@ -26,6 +31,7 @@
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
 #endif
+
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT
