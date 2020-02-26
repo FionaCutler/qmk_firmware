@@ -46,6 +46,7 @@ void matrix_scan_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
+<<<<<<< HEAD
 
 void led_init_ports(void) {
   setPinOutput(D5);
@@ -71,3 +72,5 @@ void led_set_user(uint8_t usb_led) {
   }
 
 }
+=======
+>>>>>>> upstream/master

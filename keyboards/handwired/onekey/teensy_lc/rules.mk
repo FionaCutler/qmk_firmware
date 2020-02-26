@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## chip/board settings
 # - the next two should match the directories in
 #   <chibios>/os/hal/ports/$(MCU_FAMILY)/$(MCU_SERIES)
@@ -39,3 +40,10 @@ MCU  = cortex-m0plus
 # ARM version, CORTEX-M0/M1 are 6, CORTEX-M3/M4/M7 are 7
 # I.e. 6 for Teensy LC; 7 for Teensy 3.x
 ARMV = 6
+=======
+# MCU name
+MCU = MKL26Z64
+
+# Enter lower-power sleep mode when on the ChibiOS idle thread
+OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
+>>>>>>> upstream/master

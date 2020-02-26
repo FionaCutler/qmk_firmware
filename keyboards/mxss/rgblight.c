@@ -143,6 +143,14 @@ uint32_t eeconfig_read_rgblight(void) {
 void eeconfig_update_rgblight(uint32_t val) {
   eeprom_update_dword(EECONFIG_RGBLIGHT, val);
 }
+<<<<<<< HEAD
+=======
+
+void eeconfig_update_rgblight_current(void) {
+    eeconfig_update_rgblight(rgblight_config.raw);
+}
+
+>>>>>>> upstream/master
 void eeconfig_update_rgblight_default(void) {
   dprintf("eeconfig_update_rgblight_default\n");
   rgblight_config.enable = 1;
@@ -467,6 +475,7 @@ void rgblight_sethsv_eeprom_helper(uint16_t hue, uint8_t sat, uint8_t val, bool 
         rgblight_set();
       }
     }
+<<<<<<< HEAD
     rgblight_config.hue = hue;
     rgblight_config.sat = sat;
     rgblight_config.val = val;
@@ -475,6 +484,48 @@ void rgblight_sethsv_eeprom_helper(uint16_t hue, uint8_t sat, uint8_t val, bool 
       xprintf("rgblight set hsv [EEPROM]: %u,%u,%u\n", rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
     } else {
       xprintf("rgblight set hsv [NOEEPROM]: %u,%u,%u\n", rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
+=======
+}
+
+void rgblight_sethsv(uint8_t hue, uint8_t sat, uint8_t val) { rgblight_sethsv_eeprom_helper(hue, sat, val, true); }
+
+void rgblight_sethsv_noeeprom(uint8_t hue, uint8_t sat, uint8_t val) { rgblight_sethsv_eeprom_helper(hue, sat, val, false); }
+
+uint8_t rgblight_get_speed(void) { return rgblight_config.speed; }
+
+void rgblight_set_speed_eeprom_helper(uint8_t speed, bool write_to_eeprom) {
+    rgblight_config.speed = speed;
+    if (write_to_eeprom) {
+        eeconfig_update_rgblight(rgblight_config.raw);   // EECONFIG needs to be increased to support this
+        dprintf("rgblight set speed [EEPROM]: %u\n", rgblight_config.speed);
+    } else {
+        dprintf("rgblight set speed [NOEEPROM]: %u\n", rgblight_config.speed);
+    }
+}
+
+void rgblight_set_speed(uint8_t speed) { rgblight_set_speed_eeprom_helper(speed, true); }
+
+void rgblight_set_speed_noeeprom(uint8_t speed) { rgblight_set_speed_eeprom_helper(speed, false); }
+
+uint8_t rgblight_get_hue(void) { return rgblight_config.hue; }
+
+uint8_t rgblight_get_sat(void) { return rgblight_config.sat; }
+
+uint8_t rgblight_get_val(void) { return rgblight_config.val; }
+
+void rgblight_setrgb(uint8_t r, uint8_t g, uint8_t b) {
+    if (!rgblight_config.enable) {
+        return;
+    }
+
+    for (uint8_t i = effect_start_pos; i < effect_end_pos; i++) {
+        led[i].r = r;
+        led[i].g = g;
+        led[i].b = b;
+#ifdef RGBW
+        led[i].w = 0;
+#endif
+>>>>>>> upstream/master
     }
   }
 }

@@ -117,8 +117,22 @@ void rgblight_increase_val(void);
 void rgblight_decrease_val(void);
 void rgblight_increase_speed(void);
 void rgblight_decrease_speed(void);
+<<<<<<< HEAD
 void rgblight_sethsv(uint16_t hue, uint8_t sat, uint8_t val);
 uint16_t rgblight_get_hue(void);
+=======
+void rgblight_sethsv(uint8_t hue, uint8_t sat, uint8_t val);
+void rgblight_sethsv_noeeprom(uint8_t hue, uint8_t sat, uint8_t val);
+
+/*   effect speed */
+uint8_t rgblight_get_speed(void);
+void rgblight_set_speed(uint8_t speed);
+void rgblight_set_speed_noeeprom(uint8_t speed);
+
+/*       query */
+uint8_t rgblight_get_mode(void);
+uint8_t rgblight_get_hue(void);
+>>>>>>> upstream/master
 uint8_t rgblight_get_sat(void);
 uint8_t rgblight_get_val(void);
 void rgblight_setrgb(uint8_t r, uint8_t g, uint8_t b);
@@ -126,9 +140,16 @@ void rgblight_setrgb_at(uint8_t r, uint8_t g, uint8_t b, uint8_t index);
 void rgblight_sethsv_at(uint16_t hue, uint8_t sat, uint8_t val, uint8_t index);
 
 uint32_t eeconfig_read_rgblight(void);
+<<<<<<< HEAD
 void eeconfig_update_rgblight(uint32_t val);
 void eeconfig_update_rgblight_default(void);
 void eeconfig_debug_rgblight(void);
+=======
+void     eeconfig_update_rgblight(uint32_t val);
+void     eeconfig_update_rgblight_current(void);
+void     eeconfig_update_rgblight_default(void);
+void     eeconfig_debug_rgblight(void);
+>>>>>>> upstream/master
 
 void rgb_matrix_increase(void);
 void rgb_matrix_decrease(void);
