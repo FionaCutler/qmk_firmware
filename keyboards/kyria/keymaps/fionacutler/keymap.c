@@ -22,7 +22,8 @@ enum layers {
     _RAISE,
     _ADJUST,
     _GAMING,
-    _GAMINGLOWER
+    _GAMINGLOWER,
+    _GAMINGRAISE
     };
 
 enum custom_keycodes {
@@ -36,28 +37,27 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
-      KC_TAB,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_PIPE,
+      KC_TAB,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLASH,
       KC_ESC,    KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_QUOT,
-      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                KC_LSFT,  KC_LSFT,       KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                  KC_LALT, KC_LCTL, LT(_LOWER, KC_BSPC), KC_SPC,  KC_LSFT,       KC_LSFT, KC_ENT, LT(_RAISE, KC_DEL), KC_RALT,  KC_LGUI
+      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B, KC_LSFT,  KC_LSFT,           KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                    KC_LALT, KC_LCTL, LT(_LOWER, KC_BSPC), KC_SPC,  KC_GRV,           KC_TILD, KC_ENT, LT(_RAISE, KC_DEL), KC_RALT,  KC_LGUI
     ),
     [_COLEMAK] = LAYOUT(
-      KC_TAB,     KC_Q,   KC_W,   KC_F,   KC_P,   KC_G,                                                           KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_PIPE,
+      KC_TAB,     KC_Q,   KC_W,   KC_F,   KC_P,   KC_G,                                                           KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
       KC_ESC,    KC_A,   KC_R,   KC_S,   KC_T,   KC_D,                                                           KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,           KC_LSFT,     KC_LSFT,         KC_LSFT, KC_LSFT, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                  KC_LALT, KC_LCTL, LT(_LOWER, KC_BSPC), KC_SPC,KC_LSFT,         KC_LSFT, KC_ENT, LT(_RAISE, KC_DEL), KC_RALT,  KC_LGUI
+      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,  KC_LSFT,      KC_LSFT,         KC_LSFT, KC_LSFT, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                        KC_LALT, KC_LCTL, LT(_LOWER, KC_DEL), KC_SPC,KC_GRV,         KC_TILD, KC_ENT, LT(_RAISE, KC_BSPC), KC_RALT,  KC_LGUI
     ),
     [_LOWER] = LAYOUT(
-      KC_F11, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
-      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                          KC_GRV,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE,
-      _______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, _______, _______,     _______, _______, KC_TILD, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______,
+      _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                           KC_6,       KC_7,       KC_8,     KC_9,        KC_0,    _______,
+      _______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                          KC_F6,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE,
+      _______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, _______,     _______, _______, KC_F12, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______,
                                  _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
-
     ),
     [_RAISE] = LAYOUT(
-      KC_F11,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                           KC_6,       KC_7,       KC_8,     KC_9,        KC_0,    _______,
-      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_LEFT,    KC_DOWN,    KC_UP,    KC_RIGHT,    _______, _______,
-      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, _______, _______,     _______, _______,KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______, _______,
+      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_F6,   KC_LEFT,    KC_DOWN,    KC_UP,    KC_RIGHT,     _______,
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, _______,     _______, _______, KC_F12,KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT,  _______,
                                  _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT(
@@ -65,19 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, KC_PSCREEN,                                    _______, QWERTY,  COLEMAK, _______, _______,  GAMING,
       _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______
-    ),
-    [_GAMING] = LAYOUT(
-      KC_TAB,     _______,  _______, _______,  _______,  _______,                                                           _______, _______, _______, _______, _______, _______,
-      KC_ESC,    _______,   _______,   _______,  _______,   _______,                                                        _______, _______, _______, _______, _______, _______,
-      KC_LSFT,    KC_1,   KC_2,   KC_3,   KC_4,   KC_5,           KC_C,     KC_V,         KC_LSFT, KC_LSFT, _______, _______, _______, _______, _______, _______,
-                                  KC_LALT, KC_LCTL, MO(_GAMINGLOWER), KC_SPC,KC_B,         KC_LSFT, EXT_GAMING,  KC_DEL, KC_RALT,  KC_LGUI
-    ),
-    [_GAMINGLOWER] = LAYOUT(
-      KC_TAB,     KC_F8,  KC_F9, _______,  KC_F10,  KC_F11,                                                                _______, _______, _______, _______, _______, _______,
-      KC_ESC,    KC_F6,   _______,   _______,  _______, KC_F7,                                                          _______, _______, _______, _______, _______, _______,
-      KC_LSFT,   KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,         KC_C, KC_V,         KC_LSFT, KC_LSFT, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                     KC_LALT, KC_LCTL, _______, KC_SPC, KC_B,         KC_LSFT, EXT_GAMING,  KC_DEL, KC_RALT,  KC_LGUI
-    ),
+    )
 // /*
 //  * Layer template
 //  *
@@ -118,28 +106,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case GAMING:
-       if (record->event.pressed) {
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_on(_GAMING);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
-      break;
-    case EXT_GAMING:
-          if (record->event.pressed) {
-        layer_off(_GAMING);
-        layer_off(_GAMINGLOWER);
-      }
-      return false;
-      break;
  }
  return true;
 }
@@ -175,6 +141,12 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     static void render_image(void){
       static const char PROGMEM lich[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 128, 0, 0, 0, 0, 0, 0, 128, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 192, 192, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 128, 128, 192, 240, 252, 127, 63, 15, 3, 1, 0, 0, 0, 0, 0, 224, 248, 255, 255, 31, 127, 255, 252, 240, 128, 0, 0, 0, 3, 7, 7, 7, 7, 255, 255, 255, 255, 255, 15, 7, 7, 7, 3, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 227, 231, 231, 231, 195, 0, 0, 0, 128, 192, 224, 224, 240, 112, 112, 240, 224, 192, 128, 0, 0, 0, 255, 255, 255, 255, 224, 224, 224, 224, 224, 224, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 3, 3, 3, 7, 31, 254, 252, 248, 224, 0, 0, 0, 128, 240, 254, 255, 63, 63, 56, 56, 56, 63, 63, 255, 255, 248, 192, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 128, 128, 128, 128, 128, 128, 128, 128, 0, 0, 0, 255, 255, 255, 255, 0, 0, 60, 255, 255, 255, 255, 128, 0, 0, 1, 135, 135, 3, 0, 0, 0, 255, 255, 255, 255, 1, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 0, 6, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 7, 7, 6, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 3, 0, 0, 0, 7, 7, 7, 7, 0, 0, 0, 0, 3, 7, 7, 7, 7, 7, 7, 7, 3, 3, 0, 0, 0, 7, 7, 7, 7, 0, 0, 0, 0, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 64, 64, 64, 32, 32, 32, 16, 16, 16, 16, 8, 8, 8, 8, 8, 8, 8, 16, 16, 32, 64, 64, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 192, 192, 192, 192, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 64, 32, 32, 16, 16, 8, 8, 8, 8, 8, 8, 16, 16, 16, 16, 16, 32, 32, 32, 64, 64, 64, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 64, 64, 32, 16, 144, 136, 136, 132, 130, 130, 65, 65, 65, 64, 64, 64, 64, 64, 64, 128, 128, 128, 128, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 128, 64, 65, 65, 65, 66, 60, 60, 60, 60, 255, 255, 255, 255, 60, 60, 60, 60, 66, 65, 65, 65, 64, 128, 128, 128, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 128, 128, 128, 128, 128, 128, 64, 64, 64, 64, 65, 65, 130, 130, 132, 132, 136, 136, 144, 160, 32, 64, 64, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
       oled_write_raw_P(lich,sizeof(lich));
+    }
+#endif
+#if OLED_IMAGE == WHM
+    static void render_image(void){
+        static const char PROGMEM whiteMage[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 192, 224, 240, 248, 120, 120, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 120, 120, 248, 240, 224, 192, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 254, 255, 255, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 128, 128, 135, 7, 15, 15, 31, 62, 254, 252, 248, 240, 224, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 255, 255, 255, 248, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 63, 127, 255, 255, 255, 255, 127, 62, 0, 0, 0, 128, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 62, 124, 120, 248, 240, 240, 240, 240, 240, 240, 240, 248, 248, 252, 254, 127, 63, 31, 15, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 255, 255, 255, 255, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 255, 255, 255, 224, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 255, 255, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 224, 255, 255, 127, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7, 15, 15, 30, 30, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 30, 30, 15, 15, 7, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        oled_write_raw_P(whiteMage,sizeof(whiteMage));
     }
 #endif
 static void render_qmk_logo(void) {
@@ -224,13 +196,16 @@ static void render_status(void) {
         case _GAMINGLOWER:
             oled_write_P(PSTR("Gaming Lower\n"), false);
             break;
+        case _GAMINGRAISE:
+            oled_write_P(PSTR("Gaming Raise\n"), false);
+            break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
     }
 
     // Host Keyboard LED Status
     uint8_t led_usb_state = host_keyboard_leds();
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUMLCK ") : PSTR("       "), false);
+    //oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUMLCK ") : PSTR("       "), false);
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
@@ -240,27 +215,6 @@ void oled_task_user(void) {
         render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
        render_image();
-    }
-}
-#endif
-
-#ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        // Volume control
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    }
-    else if (index == 1) {
-        // Page up/Page down
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
-        }
     }
 }
 #endif
