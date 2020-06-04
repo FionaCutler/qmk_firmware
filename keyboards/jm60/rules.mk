@@ -1,27 +1,10 @@
-# project specific files
-SRC =	matrix.c \
-	led.c
+# MCU name
+MCU = STM32F103
 
-## chip/board settings
-# - the next two should match the directories in
-#   <chibios>/os/hal/ports/$(MCU_FAMILY)/$(MCU_SERIES)
-MCU_FAMILY = STM32
-MCU_SERIES = STM32F1xx
-
-# Linker script to use
-# - it should exist either in <chibios>/os/common/ports/ARMCMx/compilers/GCC/ld/
-#   or <this_dir>/ld/
-# - NOTE: a custom ld script is needed for EEPROM on Teensy LC
 MCU_LDSCRIPT = jm60_bootloader
-
-# Startup code to use
-#  - it should exist in <chibios>/os/common/ports/ARMCMx/compilers/GCC/mk/
-MCU_STARTUP = stm32f1xx
-
-# Board: it should exist either in <chibios>/os/hal/boards/
-#  or <this_dir>/boards
 BOARD = JM60_BOARD
 
+<<<<<<< HEAD
 # Cortex version
 # Teensy LC is cortex-m0; Teensy 3.x are cortex-m4
 MCU  = cortex-m3
@@ -36,6 +19,8 @@ ARMV = 7
 #OPT_DEFS = -DCORTEX_VTOR_INIT=0x00001000
 OPT_DEFS = 
 
+=======
+>>>>>>> upstream/master
 # Build Options
 #   comment out to disable the options.
 #
@@ -51,6 +36,15 @@ CUSTOM_MATRIX = yes # Custom matrix file
 BACKLIGHT_ENABLE = no
 VISUALIZER_ENABLE = no
 
+<<<<<<< HEAD
 #LED_DRIVER = is31fl3731c
 #LED_WIDTH = 16 
 #LED_HEIGHT = 5
+=======
+# Enter lower-power sleep mode when on the ChibiOS idle thread
+OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
+
+# project specific files
+SRC = matrix.c \
+      led.c
+>>>>>>> upstream/master

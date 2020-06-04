@@ -52,6 +52,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_ANIMATIONS    // run RGB animations
 #define RGBLED_NUM          8  // number of LEDs
 
+<<<<<<< HEAD
+=======
+/* Selectively enable animation effects */
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#define RGBLIGHT_EFFECT_SNAKE
+#define RGBLIGHT_EFFECT_CHRISTMAS
+#define RGBLIGHT_EFFECT_CHRISTMAS_STEP 1
+
+/* Leader key setup */
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 250
+
+>>>>>>> upstream/master
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.

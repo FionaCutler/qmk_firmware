@@ -9,6 +9,7 @@ void matrix_init_kb(void) {
 
 void led_init_ports() {
     // Set our LED pins as output
+<<<<<<< HEAD
     setPinOutput(B13); // LED1
     writePinLow(B13);
 
@@ -20,6 +21,16 @@ void led_init_ports() {
 
     setPinOutput(B0); // Capslock LED
     writePinLow(B0);
+=======
+    palSetPadMode(GPIOB, 13, PAL_MODE_OUTPUT_PUSHPULL); // LED1
+    palClearPad(GPIOB, 13);
+    palSetPadMode(GPIOB, 14, PAL_MODE_OUTPUT_PUSHPULL); // LED2
+    palClearPad(GPIOB, 14);
+    palSetPadMode(GPIOA, 8, PAL_MODE_OUTPUT_PUSHPULL); // LED3
+    palClearPad(GPIOA, 8);
+    palSetPadMode(GPIOA, 0, PAL_MODE_OUTPUT_PUSHPULL); // Capslock LED
+    palClearPad(GPIOA, 0);
+>>>>>>> upstream/master
 }
 
 void led_set_kb(uint8_t usb_led) {

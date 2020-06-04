@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MCU name
 MCU = STM32F072
 BOARD = ST_STM32F072B_DISCOVERY
@@ -24,3 +25,6 @@ RGBLIGHT_ENABLE = yes
 
 # RAW_ENABLE = yes
 # DYNAMIC_KEYMAP_ENABLE = yes
+=======
+DEFAULT_FOLDER = projectkb/alice/rev1
+>>>>>>> upstream/master

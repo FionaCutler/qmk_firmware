@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # project specific files
 SRC =	matrix.c \
 	    led.c
@@ -45,3 +46,14 @@ ARMV = 7
 # This also requires a patch to chibios:
 #   <tmk_dir>/tmk_core/tool/chibios/ch-bootloader-jump.patch
 #STM32_BOOTLOADER_ADDRESS = 0x1FFFC800
+=======
+# MCU name
+MCU = STM32F103
+
+# Enter lower-power sleep mode when on the ChibiOS idle thread
+OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
+
+# project specific files
+SRC = matrix.c \
+      led.c
+>>>>>>> upstream/master
