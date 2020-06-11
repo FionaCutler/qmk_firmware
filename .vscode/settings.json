@@ -14,6 +14,7 @@
         "*.inc": "c",
         "*.cpp": "cpp",
         "*.hpp": "cpp",
+<<<<<<< HEAD
         "xstddef": "c",
         "type_traits": "c",
         "utility": "c"
@@ -22,4 +23,9 @@
         "editor.trimAutoWhitespace": false,
         "files.trimTrailingWhitespace": false
     }
+=======
+        "xstddef": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+>>>>>>> First version of firmware
 }
