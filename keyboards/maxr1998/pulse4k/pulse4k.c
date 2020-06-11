@@ -55,6 +55,8 @@ void encoder_update_kb(uint8_t index, bool clockwise) {
         } else encoder_two_update(clockwise);
     }
 }
+<<<<<<< HEAD
+=======
 
 __attribute__((weak)) void encoder_one_update(bool clockwise) {
     tap_code(!clockwise ? KC_PGUP : KC_PGDN);
@@ -63,3 +65,4 @@ __attribute__((weak)) void encoder_one_update(bool clockwise) {
 __attribute__((weak)) void encoder_two_update(bool clockwise) {
     tap_code(!clockwise ? KC_VOLD : KC_VOLU);
 }
+>>>>>>> upstream/master

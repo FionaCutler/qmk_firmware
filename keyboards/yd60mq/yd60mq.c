@@ -1,10 +1,21 @@
 #include "yd60mq.h"
 
+<<<<<<< HEAD
+void led_set_kb(uint8_t usb_led) {
+    if (IS_LED_ON(usb_led, USB_LED_CAPS_LOCK)) {
+        setPinOutput(F4);
+        writePinLow(F4);
+    } else {
+        setPinInput(F4);
+        writePinLow(F4);
+	}
+=======
 __attribute__((weak))
 void matrix_init_kb(void){
     setPinOutput(F4);
     writePinHigh(F4);
 }
+>>>>>>> upstream/master
 
 __attribute__((weak))
 bool led_update_kb(led_t led_state) {

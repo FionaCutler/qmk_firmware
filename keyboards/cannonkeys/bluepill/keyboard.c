@@ -17,4 +17,3 @@ void matrix_init_kb(void){
     LED_ON();
     wait_ms(500);
     LED_OFF();
-}

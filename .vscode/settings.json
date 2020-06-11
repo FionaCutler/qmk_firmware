@@ -9,6 +9,41 @@
         "**/*.bin": true
     },
     "files.associations": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        "*.h": "c",
+        "*.c": "c",
+        "*.cpp": "cpp",
+        "*.hpp": "cpp",
+        "xstddef": "c",
+        "cstdlib": "c",
+        "xlocale": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#4b4b4b",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#081808",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.inactiveBackground": "#18181899",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#181818",
+        "statusBarItem.hoverBackground": "#313131",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#323232"
+=======
+      "*.h": "c",
+      "*.c": "c",
+      "*.cpp": "cpp",
+      "*.hpp": "cpp",
+      "xstddef": "c",
+      "type_traits": "c",
+      "utility": "c"
+=======
         "*.h": "c",
         "*.c": "c",
         "*.inc": "c",
@@ -22,10 +57,15 @@
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
         "files.trimTrailingWhitespace": false
+>>>>>>> upstream/master
     }
+<<<<<<< HEAD
 =======
         "xstddef": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 >>>>>>> First version of firmware
+=======
+>>>>>>> upstream/master
+>>>>>>> d5393d1afc51c79da225943213206c4d5813f686
 }

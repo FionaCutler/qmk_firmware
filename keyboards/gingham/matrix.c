@@ -38,6 +38,16 @@ static void unselect_row(uint8_t row) {
     setPinInputHigh(row_pins[row]);
 }
 
+<<<<<<< HEAD
+static void unselect_rows(void)
+{
+    for(uint8_t x = 0; x < MATRIX_ROWS; x++) {
+        setPinInput(row_pins[x]);
+    }
+}
+
+=======
+>>>>>>> upstream/master
 static void init_pins(void) {
     unselect_rows();
     // Set I/O

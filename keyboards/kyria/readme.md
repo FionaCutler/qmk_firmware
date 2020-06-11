@@ -5,7 +5,11 @@
 An ergonomical 40% split keyboard
 
 Keyboard Maintainer: [splitkb.com](https://github.com/splitkb)  
+<<<<<<< HEAD
+Hardware Supported: Pro Micro 5V/16MHz and compatible.
+=======
 Hardware Supported: Pro Micro 5V/16MHz and compatible.  
+>>>>>>> upstream/master
 Hardware Availability: [splitkb.com](https://splitkb.com) and partners.
 
 Make example for this keyboard (after setting up your build environment):
@@ -14,8 +18,16 @@ Make example for this keyboard (after setting up your build environment):
 
 Example of flashing this keyboard:
 
+<<<<<<< HEAD
+    make kyria/rev1:default:avrdude
+
+See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
+
+A build guide for the Kyria can be found at [docs.splitkb.com](https://docs.splitkb.com/docs/kyria-build-log/).
+=======
     make kyria/rev1:default:flash
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
 A build guide for the Kyria can be found at [docs.splitkb.com](https://docs.splitkb.com/hc/en-us/articles/360010552059-Kyria-Build-Guide-Introduction).
+>>>>>>> upstream/master
