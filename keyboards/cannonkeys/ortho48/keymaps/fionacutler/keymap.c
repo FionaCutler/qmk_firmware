@@ -71,16 +71,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC, KC_LCTL, KC_LALT, KC_LGUI, LT(_LOWER,KC_DEL),   KC_SPC,  KC_ENT,   LT(_RAISE, KC_BSPC),   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 [_COLEMAK_DH] = LAYOUT_ortho_4x12(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_ENT,
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
     KC_BSPC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_K,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_M,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-    KC_ESC, KC_LCTL, KC_LALT, KC_LGUI, MO(_LOWER),   KC_SPC,  KC_BSPC,  MO(_RAISE),   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_ESC, KC_LCTL, KC_LALT, KC_LGUI, LT(_LOWER,KC_DEL),   KC_SPC,  KC_BSPC,  LT(_RAISE, KC_BSPC),   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 [_DVORAK] = LAYOUT_ortho_4x12(
-    KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_ENT,
+    KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
     KC_BSPC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH,
     KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_RSFT,
-    KC_ESC, KC_LCTL, KC_LALT, KC_LGUI, MO(_LOWER),   KC_SPC,  KC_BSPC,   MO(_RAISE),   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_ESC, KC_LCTL, KC_LALT, KC_LGUI, LT(_LOWER,KC_DEL),   KC_SPC,  KC_BSPC,   LT(_RAISE, KC_BSPC),   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 [_PLOVER] = LAYOUT_ortho_4x12(
     KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1   ,
