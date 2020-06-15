@@ -1,5 +1,5 @@
+
 #include "ch.h"
-#include "hal.h"
 #include "util.h"
 #include "quantum.h"
 
@@ -14,6 +14,4 @@
 #endif
 
 void matrix_init_kb(void){
-    LED_ON();
-    wait_ms(500);
-    LED_OFF();
+}
