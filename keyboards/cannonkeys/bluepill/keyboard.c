@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 #include "ch.h"
+=======
+#include <ch.h>
+#include <hal.h>
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e
 #include "util.h"
 #include "quantum.h"
 

@@ -30,7 +30,10 @@ UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
+<<<<<<< HEAD
 HD44780_ENABLE = no 		# Enable support for HD44780 based LCDs (+400)
+=======
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e
 USE_I2C = no                # I2C for split communication
 CUSTOM_MATRIX = yes			# For providing custom matrix.c (in this case, override regular matrix.c with split matrix.c)
 # SPLIT_KEYBOARD = yes		# Split keyboard flag disabled as manual edits had to be done to the split common files

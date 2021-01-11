@@ -4,10 +4,17 @@
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
+<<<<<<< HEAD
 #define VENDOR_ID       0x1209
 #define PRODUCT_ID      0x2328
 #define DEVICE_VER      0x501
 #define MANUFACTURER    K.T.E.C.
+=======
+#define VENDOR_ID       0x4B50
+#define PRODUCT_ID      0xD7DC
+#define DEVICE_VER      0x0501
+#define MANUFACTURER    KTEC
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e
 #define PRODUCT         Daisy
 #define DESCRIPTION     qmk port for Daisy
 
@@ -173,4 +180,10 @@
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 1
 
+<<<<<<< HEAD
 #endif
+=======
+/* Bootmagic Lite key configuration */
+// #define BOOTMAGIC_LITE_ROW 0
+// #define BOOTMAGIC_LITE_COLUMN 0
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

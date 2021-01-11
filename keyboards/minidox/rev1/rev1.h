@@ -8,7 +8,7 @@
 // readability
 #define ___ KC_NO
 
-#define LAYOUT( \
+#define LAYOUT_split_3x5_3( \
   k01, k02, k03, k04, k05,    k45, k44, k43, k42, k41, \
   k11, k12, k13, k14, k15,    k55, k54, k53, k52, k51, \
   k21, k22, k23, k24, k25,    k65, k64, k63, k62, k61, \
@@ -25,4 +25,8 @@
     { ___, ___, k73, k74, k75 } \
   }
 
+<<<<<<< HEAD
 #endif
+=======
+#define LAYOUT LAYOUT_split_3x5_3
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

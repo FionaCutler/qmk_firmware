@@ -1,8 +1,10 @@
 # Build Options
-#   change to "no" to disable the options, or define them in the Makefile in
-#   the appropriate keymap folder that will get included automatically
+#   change yes to no to disable
 #
+AUDIO_ENABLE = no              # Audio output
+RGBLIGHT_ENABLE = no           # Enable keyboard RGB underglow
 
+<<<<<<< HEAD
 BOOTMAGIC_ENABLE = no           # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = no            # Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes           # Audio control and System control(+450)
@@ -21,6 +23,10 @@ TAP_DANCE_ENABLE = no
 
 ISSI_ENABLE = yes               # If the I2C pullup resistors aren't install this must be disabled
 WATCHDOG_ENABLE = no            # Resets keyboard if matrix_scan isn't run every 250ms
+=======
+ISSI_ENABLE = no               # If the I2C pullup resistors aren't install this must be disabled
+WATCHDOG_ENABLE = no           # Resets keyboard if matrix_scan isn't run every 250ms
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e
 
 
 ifeq ($(strip $(ISSI_ENABLE)), yes)
@@ -30,4 +36,3 @@ endif
 ifeq ($(strip $(WATCHDOG_ENABLE)), yes)
     TMK_COMMON_DEFS += -DWATCHDOG_ENABLE
 endif
-

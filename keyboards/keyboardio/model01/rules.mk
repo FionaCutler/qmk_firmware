@@ -32,4 +32,9 @@ SRC += leds.c \
 	   matrix.c
 
 # You can set RGB_MATRIX_ENABLE = no in your rules.mk to disable this and save the Flash
+<<<<<<< HEAD
 RGB_MATRIX_ENABLE = custom	# Enable RGB matrix effects (+10000).
+=======
+RGB_MATRIX_ENABLE = yes # Enable RGB matrix effects.
+RGB_MATRIX_DRIVER = custom
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

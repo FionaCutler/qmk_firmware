@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MCU name
 MCU = atmega32u4
 
@@ -23,3 +24,6 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 NKRO_ENABLE = yes        # USB Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 BACKLIGHT_ENABLE = no    # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = yes    # Enable keyboard underlight functionality
+=======
+DEFAULT_FOLDER = s7_elephant/rev1
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

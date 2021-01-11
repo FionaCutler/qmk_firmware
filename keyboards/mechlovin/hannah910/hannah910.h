@@ -17,6 +17,7 @@
 
 #include "quantum.h"
 
+<<<<<<< HEAD
 /* This a shortcut to help you visually see your layout.
  *
  * The first section contains all of the arguments representing the physical
@@ -68,3 +69,12 @@
     { k46, KC_NO, k48, k49,   k50,   k51,   k52, k53,   k54,   k55,   k56, k57, k58,   k59, k60   }, \
     { k61, k62,   k63, KC_NO, KC_NO, KC_NO, k65, KC_NO, KC_NO, KC_NO, k67, k68, k69,   k70, k71 }, \
 }
+=======
+#ifdef KEYBOARD_mechlovin_hannah910_rev1
+    #include "rev1.h"
+#elif KEYBOARD_mechlovin_hannah910_rev2
+    #include "rev2.h"
+#elif KEYBOARD_mechlovin_hannah910_rev3
+    #include "rev3.h"
+#endif
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

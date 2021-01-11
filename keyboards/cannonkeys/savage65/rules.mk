@@ -23,4 +23,12 @@ WS2812_DRIVER = spi
 
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
+<<<<<<< HEAD
 >>>>>>> upstream/master
+=======
+
+# Wildcard to allow APM32 MCU 
+DFU_SUFFIX_ARGS = -p FFFF -v FFFF
+
+LAYOUTS = 65_ansi_blocker 65_ansi_blocker_split_bs 65_ansi_blocker_tsangan 65_iso_blocker
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

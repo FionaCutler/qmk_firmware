@@ -15,6 +15,7 @@ BOOTLOADER = atmel-dfu
 #   change yes to no to disable
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = yes	# Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes	# Audio control and System control(+450)
@@ -27,6 +28,9 @@ AUDIO_ENABLE = no
 RGBLIGHT_ENABLE = yes
 =======
 BOOTMAGIC_ENABLE = yes      # Virtual DIP switch configuration
+=======
+BOOTMAGIC_ENABLE = lite     # Virtual DIP switch configuration
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
 CONSOLE_ENABLE = no         # Console for debug
@@ -41,9 +45,8 @@ MIDI_ENABLE = no            # MIDI support
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
-HD44780_ENABLE = no         # Enable support for HD44780 based LCDs
 
-LAYOUTS = 60_ansi 60_iso
+LAYOUTS = 60_ansi 60_ansi_split_bs_rshift 60_ansi_tsangan 60_hhkb 60_iso 60_iso_split_bs_rshift 60_iso_tsangan
 
 DEFAULT_FOLDER = yd60mq/12led
 >>>>>>> upstream/master

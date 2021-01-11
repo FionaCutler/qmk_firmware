@@ -19,3 +19,12 @@ RGBLIGHT_ENABLE = yes
 WS2812_DRIVER = spi
 
 LAYOUTS = 60_ansi 60_tsangan_hhkb
+<<<<<<< HEAD
+=======
+
+# Wildcard to allow APM32 MCU 
+DFU_SUFFIX_ARGS = -p FFFF -v FFFF
+
+# Enter lower-power sleep mode when on the ChibiOS idle thread
+OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e

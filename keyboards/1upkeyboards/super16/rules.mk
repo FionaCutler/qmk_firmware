@@ -29,13 +29,17 @@ RGBLIGHT_ENABLE = yes       # Enable keyboard RGB underglow
 MIDI_ENABLE = no            # MIDI support (+2400 to 4200, depending on config)
 =======
 RGBLIGHT_ENABLE = no       # Enable keyboard RGB underglow
-RGB_MATRIX_ENABLE = WS2812
+RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_DRIVER = WS2812
 MIDI_ENABLE = no            # MIDI support
 >>>>>>> upstream/master
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
+<<<<<<< HEAD
 HD44780_ENABLE = no         # Enable support for HD44780 based LCDs (+400)
+=======
+>>>>>>> e941f048919bba052fd326eadc5acd2347e6756e
 
 LAYOUTS = ortho_4x4 numpad_4x4
