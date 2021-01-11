@@ -18,17 +18,18 @@
 enum layers {
     _QWERTY = 0,
     _COLEMAK,
+    _MODDH,
     _LOWER,
     _RAISE,
     _ADJUST,
     _GAMING,
-    _GAMINGLOWER,
-    _GAMINGRAISE
+    _GAMINGLOWER
     };
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
+  MODDH,
   GAMING,
   EXT_GAMING
 
@@ -37,32 +38,51 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
-      KC_TAB,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLASH,
-      KC_ESC,    KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_QUOT,
+      KC_ESC,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLASH,
+      KC_TAB,    KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_QUOT,
       KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B, KC_LSFT,  KC_LSFT,           KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                     KC_LALT, KC_LCTL, LT(_LOWER, KC_BSPC), KC_SPC,  KC_GRV,           KC_TILD, KC_ENT, LT(_RAISE, KC_DEL), KC_RALT,  KC_LGUI
     ),
     [_COLEMAK] = LAYOUT(
-      KC_TAB,     KC_Q,   KC_W,   KC_F,   KC_P,   KC_G,                                                           KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
-      KC_ESC,    KC_A,   KC_R,   KC_S,   KC_T,   KC_D,                                                           KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,  KC_LSFT,      KC_LSFT,         KC_LSFT, KC_LSFT, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+      KC_ESC,     KC_Q,   KC_W,   KC_F,   KC_P,   KC_G,                                                          KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
+      KC_TAB,    KC_A,   KC_R,   KC_S,   KC_T,   KC_D,                                                           KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
+      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,  KC_LSFT,      KC_LSFT,         KC_LSFT, KC_LSFT,       KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                         KC_LALT, KC_LCTL, LT(_LOWER, KC_DEL), KC_SPC,KC_GRV,         KC_TILD, KC_ENT, LT(_RAISE, KC_BSPC), KC_RALT,  KC_LGUI
     ),
+    [_MODDH] = LAYOUT(
+      KC_ESC,     KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                                          KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
+      KC_TAB,    KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                                           KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
+      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,  KC_LSFT,      KC_LSFT,         KC_LSFT, KC_LSFT,        KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                        KC_LALT, KC_LCTL, LT(_LOWER, KC_DEL), KC_SPC,KC_GRV,         KC_TILD, KC_ENT, LT(_RAISE, KC_BSPC), KC_RALT,  KC_LGUI
+    ),
+    [_GAMING] = LAYOUT(
+      KC_ESC,     KC_C,   KC_Q,   KC_T,   KC_E,   KC_R,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLASH,
+      KC_TAB,    KC_F,   KC_A,   KC_W,   KC_D,   KC_G,                                                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_QUOT,
+      KC_LSFT,    KC_Z,   KC_X,   KC_S,   KC_V,   KC_B, KC_LSFT,  KC_LSFT,           KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                    KC_LALT, KC_LCTL, MO(_GAMINGLOWER), KC_SPC,  KC_C,           KC_TILD, EXT_GAMING, LT(_RAISE, KC_DEL), KC_RALT,  KC_LGUI
+    ),
     [_LOWER] = LAYOUT(
+      _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                                KC_6,       KC_7,       KC_8,     KC_9,        KC_0,    _______,
+      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                              _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE,
+      KC_F11,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,_______,     _______, _______,     _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______,
+                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
+    ),
+    [_RAISE] = LAYOUT(
+      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
+      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                          _______,  KC_LEFT,    KC_DOWN,    KC_UP, KC_RIGHT,  _______,
+      KC_F11,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,_______,     _______, _______, _______,    _______,_______,_______,_______, _______,
+                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
+    ),
+
+    [_GAMINGLOWER] = LAYOUT(
       _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                           KC_6,       KC_7,       KC_8,     KC_9,        KC_0,    _______,
       KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                           _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE,
       KC_F11,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,_______,     _______, _______,  _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______,
                                  _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
     ),
-    [_RAISE] = LAYOUT(
-      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
-      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                          _______,   KC_LEFT,    KC_DOWN,    KC_UP,    KC_RIGHT,     _______,
-      KC_F11,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,_______,     _______, _______, _______,KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT,  _______,
-                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
-    ),
     [_ADJUST] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      KC_F12, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, KC_PSCREEN,                                    _______, QWERTY,  COLEMAK, _______, _______,  GAMING,
+      KC_F12, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, KC_PSCREEN,                                    _______, QWERTY,  COLEMAK, MODDH, _______,  GAMING,
       KC_F11, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,RGB_TOG, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______
     )
@@ -103,6 +123,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case COLEMAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_COLEMAK);
+      }
+      return false;
+      break;
+
+    case MODDH:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_MODDH);
+      }
+      return false;
+      break;
+
+    case GAMING:
+      if (record->event.pressed) {
+        layer_off(_RAISE);
+        layer_off(_LOWER);
+        layer_off(_ADJUST);
+        layer_on(_GAMING);
+        if (!eeconfig_is_enabled()) {
+            eeconfig_init();
+        }
+        keymap_config.raw = eeconfig_read_keymap();
+        keymap_config.nkro = 1;
+        eeconfig_update_keymap(keymap_config.raw);
+      }
+      return false;
+      break;
+    case EXT_GAMING:
+
+      if (record->event.pressed) {
+        layer_off(_GAMING);
       }
       return false;
       break;
@@ -171,6 +221,9 @@ static void render_status(void) {
         case _COLEMAK:
             oled_write_ln_P(PSTR("Colemak"), false);
             break;
+        case _MODDH:
+            oled_write_ln_P(PSTR("Mod DH"), false);
+            break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
     }
@@ -192,12 +245,6 @@ static void render_status(void) {
             break;
         case _GAMING:
             oled_write_P(PSTR("Gaming\n"), false);
-            break;
-        case _GAMINGLOWER:
-            oled_write_P(PSTR("Gaming Lower\n"), false);
-            break;
-        case _GAMINGRAISE:
-            oled_write_P(PSTR("Gaming Raise\n"), false);
             break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
