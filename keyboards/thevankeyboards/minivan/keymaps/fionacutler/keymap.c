@@ -1,100 +1,159 @@
 #include QMK_KEYBOARD_H
 
+enum layer_names {
+  _QWERTY,
+  _COLEMAK,
+  _DVORAK,
+  _LOWER,
+  _RAISE,
+  _MOUSE,
+  _ADJUST,
+};
 
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
+enum custom_keycodes {
+  QWERTY = SAFE_RANGE
+};
 
-#define _QW 0
-#define _DV 1
-#define _CM 2
-#define _L1 3
-#define _L2 4
-#define _L3 5
-
-// Curly braces have their own keys. These are defined to make them not mess up
-// the grid in layer 2.
-#define L_CURBR LSFT(KC_LBRC)
-#define R_CURBR LSFT(KC_RBRC)
+#define MOUSE  MO(_MOUSE)
+#define ESC_UT LT(_UTIL, KC_ESC)
+#define SPC_LO LT(_LOWER, KC_ENT)
+#define SPC_RA LT(_RAISE, KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_arrow( /* Qwerty */
-    KC_GESC,       KC_Q,    KC_W,    KC_E,  KC_R, KC_T,    KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
-    LT(2, KC_TAB), KC_A,    KC_S,    KC_D,  KC_F, KC_G,    KC_H,   KC_J,  KC_K,    KC_L,    KC_SCLN, LT(2, KC_ENT),
-    KC_LSFT,       KC_Z,    KC_X,    KC_C,  KC_V, KC_B,    KC_N,   KC_M,  KC_COMM, KC_DOT,  KC_UP,   MT(MOD_RSFT, KC_SLSH),
-    KC_LCTL,       KC_LGUI, KC_LALT, LT(1, KC_SPC), LT(1, KC_SPC), MO(4),   KC_LEFT, KC_DOWN, KC_RIGHT
-  ),
-  [1] = LAYOUT_arrow( /* LAYER 2 */
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
-    KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6, KC_TRNS, KC_MINS, KC_EQL,  KC_QUOT, KC_TRNS,
-    KC_TRNS, KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_F11,  KC_F12, KC_TRNS, KC_LBRC, KC_RBRC, KC_PGUP, KC_BSLS,
-    KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_HOME, KC_PGDN, KC_END
-  ),
-  [2] = LAYOUT_arrow( /* LAYER 1 */
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
-    KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6, KC_TRNS, KC_UNDS, KC_PLUS, KC_DQUO, KC_TRNS,
-    KC_TRNS, KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_F11,  KC_F12,  KC_TRNS, KC_LCBR, KC_RCBR, KC_PGUP, KC_PIPE,
-    KC_TRNS, KC_TRNS, KC_TRNS,         KC_TRNS, KC_TRNS,          KC_TRNS, KC_HOME, KC_PGDN, KC_END
-  ),
-  [3] = LAYOUT_arrow( /* LAYER 3 */
-    KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F11,  KC_F12,  KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS,         KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-  ),
-  [4] = LAYOUT_arrow( /* Gaming Layer*/
-    KC_ESC,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_WH_U, KC_BTN1, KC_MS_U, KC_BTN2, KC_TRNS, KC_TRNS,
-    KC_TAB,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_WH_D, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LT(5, KC_SLSH),
-    KC_TRNS, KC_TRNS, KC_TRNS,         KC_SPACE, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-  ),
-  [5] = LAYOUT_arrow( /* RESET Layer*/
-    RESET,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,  KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-  )
+
+[_QWERTY] = LAYOUT_arrow(
+KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+KC_LCTL, KC_LALT, KC_LGUI,                   SPC_RA,  SPC_LO,           MOUSE,   KC_LBRC, KC_RBRC, XXXXXXX
+),
+
+
+/* Lower
+* ,--------------------------------------------------------------------------.
+* |   ~  |  !  |  @  |  #  |  $  |  %  |  ^  |  &  |  *  |  (  |  )  |  Del  |
+* |------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-------|
+* | Del   | F1  | F2  | F3  | F4  | F5  | F6  |  _  |  +  |  {  |  }  |   |  |
+* |-------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`------|
+* |        | F7  | F8  | F9  | F10 | F11 | F12 |ISO ~|ISO ||     |     |     |
+* |--------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----|
+* |      |      |       |             |             | Next |Vol- |Vol+ |Play |
+* `--------------------------------------------------------------------------'
+*/
+[_LOWER] = LAYOUT_arrow(
+KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
+KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PIPE,
+_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,S(KC_NUHS),S(KC_NUBS),_______, _______, _______,
+_______, _______, _______,                   _______, _______,          KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+),
+
+/* Raise
+* ,--------------------------------------------------------------------------.
+* |   `  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  Del  |
+* |------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-------|
+* | Del   | F1  | F2  | F3  | F4  | F5  | F6  |  -  |  =  |  [  |  ]  |   \  |
+* |-------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`------|
+* |        | F7  | F8  | F9  | F10 | F11 | F12 |ISO #|ISO /|     |     |     |
+* |--------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----|
+* |      |      |       |             |             | Next |Vol- |Vol+ |Play |
+* `--------------------------------------------------------------------------'
+*/
+[_RAISE] = LAYOUT_arrow(
+KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
+KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
+_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______,
+_______, _______, _______,                   _______, _______,          KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+),
+
+/* Mouse
+* ,--------------------------------------------------------------------------.
+* |      |     | M U |     |     |     |     |     |     |L Clk|R Clk| W Up  |
+* |------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-------|
+* |       | M L | M D | M R |     |     |     |     |     |     |     |W Dwn |
+* |-------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`------|
+* |        |     |     |     |     |     |     |     |     |     |     |     |
+* |--------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----|
+* |      |      |       |             |             |      |     |     |     |
+* `--------------------------------------------------------------------------'
+*/
+[_MOUSE] = LAYOUT_arrow(
+XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, KC_WH_U,
+XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_D,
+XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+),
+
+/* Adjust
+* ,--------------------------------------------------------------------------.
+* |      |     |     |     |     |QWRTY|COLMK|DVRAK|     |     |     | RESET |
+* |------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-------|
+* |       |     |     |     |     |     |     |     |     |     |     |      |
+* |-------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`------|
+* |        |     |     |     |     |     |     |     |     |     |     |     |
+* |--------`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----`-----|
+* |      |      |       |             |             |      |     |     |     |
+* `--------------------------------------------------------------------------'
+*/
+[_ADJUST] = LAYOUT_arrow(
+XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QWERTY,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RESET,
+XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+)
+
+
 };
 
 void keyboard_post_init_user(void) {
   #ifdef RGBLIGHT_ENABLE
-    // Set up RGB effects on _only_ the third LED (index 2)
-    rgblight_set_effect_range(2, 1);
-    // Set LED effects to breathing mode in a tealish blue color
-    //rgblight_sethsv_noeeprom();
+    // set up rgb effects on only the third led (index 2)
+    //rgblight_set_effect_range(2, 1);
+
+    // set led effects to breathing mode in yellow
+    //rgblight_sethsv_noeeprom(36,255,100);
     //rgblight_mode_noeeprom(RGBLIGHT_EFFECT_BREATHING + 2);
 
-    // Init the first two LEDs to a static color
+    // set other led's to off
     setrgb(0, 0, 0, (LED_TYPE *)&led[0]);
     setrgb(0, 0, 0, (LED_TYPE *)&led[1]);
     setrgb(0, 0, 0, (LED_TYPE *)&led[2]);
     rgblight_set();
-  #endif //RGBLIGHT_ENABLE
+  #endif
 }
 
-uint32_t layer_state_set_user(uint32_t state){
-  #ifdef RGBLIGHT_ENABLE
-    uint8_t led0r = 0; uint8_t led0g = 0; uint8_t led0b = 0;
-    uint8_t led1r = 0; uint8_t led1g = 0; uint8_t led1b = 0;
+layer_state_t layer_state_set_user(layer_state_t state) {
+  state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  /* #ifdef RGBLIGHT_ENABLE
+    if (layer_state_cmp(state, _ADJUST)) {
+      setrgb(255, 70, 100, (LED_TYPE *)&led[0]);
+      setrgb(70, 255, 200, (LED_TYPE *)&led[1]);
+    } else if (layer_state_cmp(state, _LOWER)) {
+      setrgb(0, 0, 0, (LED_TYPE *)&led[0]);
+      setrgb(70, 255, 200, (LED_TYPE *)&led[1]);
+    } else if (layer_state_cmp(state, _RAISE)) {
+      setrgb(255, 70, 100, (LED_TYPE *)&led[0]);
+      setrgb(0, 0, 0, (LED_TYPE *)&led[1]);
+    } else if (layer_state_cmp(state, _MOUSE)) {
+      setrgb(255, 145, 5, (LED_TYPE *)&led[0]);
+      setrgb(255, 145, 5, (LED_TYPE *)&led[1]);
+    } else {
+      setrgb(0, 0, 0, (LED_TYPE *)&led[0]);
+      setrgb(0, 0, 0, (LED_TYPE *)&led[1]);
+    }
 
-    if (layer_state_cmp(state, 1)) {
-      led0r = 255;
-    }
-    if (layer_state_cmp(state, 2)) {
-      led0g = 255;
-    }
-
-    if (layer_state_cmp(state, 4)) {
-      led1b = 255;
-    }
-    if (layer_state_cmp(state, 5)) {
-      led1r = 255;
-    }
-
-    setrgb(led0r, led0g, led0b, (LED_TYPE *)&led[0]);
-    setrgb(led1r, led1g, led1b, (LED_TYPE *)&led[1]);
     rgblight_set();
-  #endif //RGBLIGHT_ENABLE
+  #endif */
+
   return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+  }
+  return true;
 }
