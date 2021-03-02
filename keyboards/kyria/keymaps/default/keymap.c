@@ -22,7 +22,6 @@ enum layers {
     _ADJUST
 };
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
  *

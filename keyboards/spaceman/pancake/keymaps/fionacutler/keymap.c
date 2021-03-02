@@ -5,8 +5,10 @@ enum layers {
   _RAISE,
   _FN
 };
+
 #define LOWER LT(_LOWER, KC_BSPC)
 #define RAISE LT(_RAISE, KC_DEL)
+#define FN MO(_FN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -22,11 +24,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_DEFAULT] = LAYOUT_ortho_4x12(
-    KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT, KC_BSPC,
-    KC_TAB,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_SCLN,
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT, KC_BSPC,
+    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_SCLN,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT ,
     KC_LCTL, KC_RALT, KC_LALT, KC_LGUI, RAISE,   KC_SPC,  KC_ENT,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
+
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.

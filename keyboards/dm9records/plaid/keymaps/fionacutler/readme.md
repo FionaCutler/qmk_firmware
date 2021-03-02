@@ -1,4 +1,3 @@
-
 # The default keymap for plaid
 Original copyright 2019 Takuya Urakawa (dm9records.com)
 LED Support added  by Richard Sutherland (rich@brickbots.com)
