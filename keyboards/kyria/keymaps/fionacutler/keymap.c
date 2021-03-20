@@ -15,9 +15,17 @@
  */
 #include QMK_KEYBOARD_H
 
+bool is_alt_tab_active = false; // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer = 0;     // we will be using them soon.
+
+#define TSKMGR LCTL(LSFT(KC_ESC))
+#define UNDO LCTL(KC_Z)
+#define CUT LCTL(KC_X)
+#define COPY LCTL(KC_C)
+#define PASTE LCTL(KC_V)
 enum layers {
     _MODDH = 0,
-    _COLEMAK,
+    _COLEMAQ,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -27,42 +35,49 @@ enum layers {
 
 enum custom_keycodes {
   MODDH = SAFE_RANGE,
-  COLEMAK,
+  COLEMAQ,
   GAMING,
-  EXT_GAMING
+  EXT_GAMING,
+  ALT_TAB
 
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODDH] = LAYOUT(
-      KC_ESC,     KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                                          KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT, KC_BSLASH,
-      KC_TAB,    KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                                           KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_SCLN,
-      KC_LSFT,    KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,  TG(_RAISE),    GAMING,         KC_LSFT, TG(_LOWER),        KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                        KC_LALT, KC_LCTL,LT(_LOWER, KC_DEL), KC_SPC,KC_GRV,         KC_TILD, KC_ENT,   LT(_RAISE, KC_BSPC),KC_RALT,  KC_LGUI
+      KC_NO,    KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                           KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,   KC_NO,
+      KC_NO,    KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                           KC_M,    KC_N,    KC_E,    KC_I,    KC_O,      KC_NO,
+      KC_NO,    KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,  KC_NO,     KC_NO,     KC_NO, KC_NO,      KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,   KC_NO,
+                 KC_NO, LCTL_T(KC_ESC),LT(_LOWER, KC_TAB),  KC_SPC,KC_NO,    KC_NO, OSM(MOD_LSFT),  LT(_RAISE, KC_BSPC), LALT_T(KC_DEL),  KC_NO
+    ),
+    [_COLEMAQ] = LAYOUT(
+      KC_NO,    KC_QUOT,  KC_W,   KC_G,   KC_P,   KC_B,                                           KC_J,    KC_L,    KC_U,    KC_Y,    KC_Q,   KC_NO,
+      KC_NO,    KC_A,   KC_R,   KC_S,   KC_T,   KC_F,                                           KC_M,    KC_N,    KC_E,    KC_I,    KC_O,      KC_NO,
+      KC_NO,    KC_Z,   KC_X,   KC_C,   KC_D,   KC_K,  KC_NO,     KC_NO,     KC_NO, KC_NO,      KC_V,    KC_H,    KC_SLSH, KC_COMM, KC_DOT,     KC_NO,
+                KC_NO, LCTL_T(KC_ESC),LT(_LOWER, KC_TAB),  KC_SPC,KC_NO,     KC_NO, OSM(MOD_LSFT),  LT(_RAISE, KC_BSPC), LALT_T(KC_DEL),  KC_NO
     ),
     [_LOWER] = LAYOUT(
-      _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                                KC_6,  KC_7,    KC_8,     KC_9,      KC_0,    _______,
-      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                              _______,  KC_MINUS, KC_EQUAL,KC_LBRC, KC_RBRC, _______,
-      KC_F11,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,_______,     _______, _______,     _______,  KC_UNDS, KC_PLUS,  KC_LCBR, KC_RCBR,  _______,
-                                 _______, _______, _______, _______, _______,     _______, KC_ENT, _______, _______, _______
+      KC_NO,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                               KC_6,     KC_7,  KC_8,  KC_9, KC_0,    KC_NO,
+      KC_NO,  KC_F1,   KC_LEFT,   KC_UP,   KC_RIGHT,   KC_F2,                                         KC_BSLS,  KC_4,  KC_5,  KC_6, KC_MINS, KC_NO,
+      KC_NO,  KC_F4,   KC_F5,   KC_DOWN,   KC_F11,   KC_F12,  _______,_______,     _______, _______,  KC_0,     KC_1,  KC_2,  KC_3, KC_PLUS, KC_NO,
+                                 _______, _______, _______,  _______, _______,      _______,KC_ENT,_______, _______, _______
     ),
     [_RAISE] = LAYOUT(
-      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_BSLS,
-      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,  _______,
-      KC_F11,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, _______,_______,      _______,_______,  _______,   _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
+      KC_NO,  KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                                        KC_PERC, KC_MINS, KC_PLUS,  KC_SLSH, KC_ASTR,  KC_NO,
+      KC_NO,  KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                                         KC_BSLS, KC_UNDS, KC_EQUAL, KC_COLON, KC_SCLN,  KC_NO,
+      KC_NO,  KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, _______,_______,      _______,_______,  _______,  KC_AMPR, _______, _______, _______, KC_NO,
+                                 _______, _______, _______,KC_TAB, _______,     _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  EEP_RST,
-      KC_F12, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, KC_PSCREEN,                                    _______, _______, _______,  MODDH, _______,  GAMING,
-      KC_F11, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,RGB_TOG, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______
+    KC_NO, KC_F1,  KC_F2,  KC_F3, KC_F4, KC_F5,                                                       KC_F6,   KC_F7,   KC_F8,  KC_F9,    KC_F10,  KC_NO,
+    KC_NO, KC_F11, KC_F12, ALT_TAB, TSKMGR, KC_PSCREEN,                                               _______, MODDH, COLEMAQ,     _______,  RGB_TOG, KC_NO,
+    KC_NO, UNDO,   CUT,    COPY, PASTE,   _______,       _______, _______,        _______, _______,    RGB_VAD, RGB_SAD, RGB_HUD,  RGB_RMOD, RESET,   KC_NO,
+                              _______,   _______, _______,  _______, _______,    _______,  _______,  _______, _______,   _______
     ),
     [_GAMING] = LAYOUT(
-      KC_ESC,     KC_C,   KC_Q,   KC_T,   KC_E,   KC_R,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLASH,
-      KC_TAB,    KC_F,   KC_A,   KC_W,   KC_D,   KC_G,                                                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_QUOT,
-      KC_LSFT,    KC_Z,   KC_X,   KC_S,   KC_V,   KC_B, KC_LSFT,  KC_LSFT,           KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+      KC_ESC,     KC_C,   KC_Q,   KC_T,   KC_E,   KC_R,                                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_NO,
+      KC_TAB,    KC_F,   KC_A,   KC_W,   KC_D,   KC_G,                                                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_NO,
+      KC_LSFT,    KC_Z,   KC_X,   KC_S,   KC_V,   KC_B, KC_LSFT,  KC_LSFT,           KC_LSFT, KC_LSFT,           KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
                     KC_LALT, KC_LCTL, MO(_GAMINGLOWER), KC_SPC,  KC_C,           KC_TILD, EXT_GAMING, LT(_RAISE, KC_DEL), KC_RALT,  KC_LGUI
     ),
     [_GAMINGLOWER] = LAYOUT(
@@ -99,9 +114,26 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
  switch (keycode) {
+    case ALT_TAB:
+      if (record->event.pressed) {
+        if (!is_alt_tab_active) {
+          is_alt_tab_active = true;
+          register_code(KC_LALT);
+        }
+        alt_tab_timer = timer_read();
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_TAB);
+      }
+      break;
     case MODDH:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_MODDH);
+      }
+      return false;
+    case COLEMAQ:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_COLEMAQ);
       }
       return false;
     case GAMING:
@@ -128,6 +160,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
  }
  return true;
+}
+
+void matrix_scan_user(void) { // The very important timer.
+  if (is_alt_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 1000) {
+      unregister_code(KC_LALT);
+      is_alt_tab_active = false;
+    }
+  }
 }
 
 #ifdef OLED_DRIVER_ENABLE
@@ -188,6 +229,9 @@ static void render_status(void) {
         case _MODDH:
             oled_write_ln_P(PSTR("Mod DH"), false);
             break;
+        case _COLEMAQ:
+            oled_write_ln_P(PSTR("ColemaQ"), false);
+            break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
     }
@@ -195,6 +239,7 @@ static void render_status(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _MODDH:
+        case _COLEMAQ:
             oled_write_P(PSTR("Default\n"), false);
             break;
         case _LOWER:

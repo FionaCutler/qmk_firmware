@@ -20,6 +20,9 @@ enum encoder_names {
   _RIGHT,
   _MIDDLE,
 };
+
+bool is_alt_tab_active = false; // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer = 0;     // we will be using them soon.
 /*
 enum custom_keycodes {
     SENDLETTER = SAFE_RANGE
@@ -81,14 +84,28 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
     else if (index == _RIGHT) {
         if (clockwise) {
-            tap_code(KC_PGDN);
-            //letterselect++;
+            if (!is_alt_tab_active) {
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            tap_code16(KC_TAB);
         } else {
-            tap_code(KC_PGUP);
-            /*
-            if(letterselect > 0){
-                letterselect--;
-            }*/
+            if (!is_alt_tab_active) {
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            tap_code16(S(KC_TAB));
         }
     }
+}
+
+void matrix_scan_user(void) { // The very important timer.
+  if (is_alt_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 1000) {
+      unregister_code(KC_LALT);
+      is_alt_tab_active = false;
+    }
+  }
 }
