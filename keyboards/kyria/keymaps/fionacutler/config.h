@@ -23,7 +23,7 @@
   #define SLY 2
   #define LICH 3
   #define WHM 4
-  #define OLED_IMAGE WHM
+  #define OLED_IMAGE KYRIA
 #endif
 
 #ifdef RGBLIGHT_ENABLE
@@ -39,6 +39,8 @@
 
 
 
+#define USB_POLLING_INTERVAL_MS 1
+#define FORCE_NKRO
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT
 #define SPLIT_USB_TIMEOUT 1000
