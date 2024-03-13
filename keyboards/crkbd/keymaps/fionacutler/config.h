@@ -29,9 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 #define USE_SERIAL_PD2
-
-#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM 200
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
@@ -44,4 +43,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
-
