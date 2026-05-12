@@ -21,30 +21,51 @@ enum layers {
     DEFAULT
 };
 
+enum combo_events {
+    LED_ADJUST
+};
+
 const uint16_t PROGMEM led_adjust_combo[] = {KC_LEFT, KC_RGHT, COMBO_END};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [DEFAULT] = {
-        { KC_END,  KC_UP,   KC_MUTE },
-        { KC_LEFT, KC_DOWN, KC_RGHT }
-    }
+    [DEFAULT] = LAYOUT(
+        KC_END,  KC_UP,   KC_MUTE,
+        KC_LEFT, KC_DOWN, KC_RGHT
+    )
 };
 
-void matrix_init_user(void) {
-}
+combo_t key_combos[] = {
+    [LED_ADJUST] = COMBO_ACTION(led_adjust_combo)
+};
 
-void encoder_one_update(bool clockwise) {
-    if (clockwise) {
-        tap_code(KC_PGDN);
-    } else {
-        tap_code(KC_PGUP);
+bool led_adjust_active = false;
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    if (combo_index == LED_ADJUST) {
+        led_adjust_active = pressed;
     }
 }
 
-void encoder_two_update(bool clockwise) {
-    if (clockwise) {
-        tap_code(KC_VOLU);
-    } else {
-        tap_code(KC_VOLD);
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (led_adjust_active) {
+            if (clockwise) {
+                rgblight_increase_val();
+            } else {
+                rgblight_decrease_val();
+            }
+            return false;
+        }
+    } else if (index == 1) {
+        if (led_adjust_active) {
+            if (clockwise) {
+                rgblight_increase_hue();
+            } else {
+                rgblight_decrease_hue();
+            }
+            return false;
+        }
     }
+
+    return true;
 }
